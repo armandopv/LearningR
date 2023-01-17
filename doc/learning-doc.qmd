@@ -1,0 +1,6 @@
+---
+title: "Reproducible documents"
+author: "Armando Pacheco-Valenciana"
+format: html
+---
+
