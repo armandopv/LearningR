@@ -4,3 +4,26 @@ author: "Armando Pacheco-Valenciana"
 format: html
 ---
 
+```{r setup}
+#| include: false
+library(tidyverse)
+nhanes_small <- read_csv(here::here("data/nhance_small.csv"))
+```
+
+## Table of results
+
+```{r mean-age-bmi-table}
+#| echo: false
+#| warning: false
+#| message: false
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  group_by(diabetes, education) %>%
+  summarise(
+    max_bmi = max(bmi, na.rm = TRUE),
+    min_bmi = min(bmi, na.rm = TRUE)
+  ) %>%
+    ungroup() %>% 
+    knitr::kable(caption = "Mean values of Age and bmi for each diabetes and education status")
+```
+

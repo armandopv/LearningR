@@ -184,6 +184,5 @@ nhanes_small %>%
 
 write_csv(
     nhanes_small,
-    here::here("data/nhance_small
-               .csv")
+    here::here("data/nhance_small.csv")
 )
