@@ -76,3 +76,9 @@ nhanes_small %>%
 ```
     
 ```
+
+## Exercise 8.7 
+
+## Inserting images 
+![animalitos](Images/friends.png){#fig-animalitos}
+
