@@ -142,3 +142,39 @@ nhanes_update <- nhanes_small %>%
     )
   )
 nhanes_update
+
+# Excersise -------------------------------------------------------------------------
+
+# 1. BMI between 20 and 40 with diabetes
+nhanes_small %>%
+  filter(bmi >= 20 & bmi <= 40 & diabetes == "Yes")
+
+# Pipe the data into mutate function and:
+nhanes_modified <- nhanes_small %>%
+  mutate(
+    mean_arterial_pressure = ((2 * bp_dia_ave) + bp_sys_ave) / 3,
+    young_child = if_else(age < 6, "Yes", "No")
+  )
+
+nhanes_modified
+
+
+# Split - apply - combine -------------------------------------------------
+
+nhanes_small %>%
+  summarise(
+    max_bmi = max(bmi)
+  )
+
+nhanes_small %>%
+  summarise(
+    max_bmi = max(bmi, na.rm = TRUE)
+  )
+
+nhanes_small %>%
+  filter(!is.na(diabetes)) %>%
+  group_by(diabetes, phys_active) %>%
+  summarise(
+    max_bmi = max(bmi, na.rm = TRUE),
+    min_bmi = min(bmi, na.rm = TRUE)
+  )
