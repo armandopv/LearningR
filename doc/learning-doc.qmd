@@ -154,6 +154,37 @@ nhanes_small %>%
     geom_boxplot(na.rm = TRUE, width = 0.1)
 ```
 
+## Exercise to make plots with one or two variables
 
+```{r}
+library(NHANES)
+nhanes_exercise <- NHANES %>% 
+    rename_with(snakecase::to_snake_case) %>% 
+    rename(sex = gender)
+```
+
+
+```{r}
+#| label: fig-diabetes-age-distribution
+#| fig-cap: "Distribution of age and diabetes diagnosis"
+#| fig-subcap: 
+#|   - "Age at collection"
+#|   - "Age of diabetes diagnosis"
+#| layout-ncol: 2
+# Distribution of age
+ggplot(nhanes_exercise, aes(x = age)) +
+    geom_density(na.rm = TRUE)
+
+# Distribution of age at diabetes diagnosis
+ggplot(nhanes_exercise, aes(x = diabetes_age)) +
+    geom_density(na.rm = TRUE)
+```
+
+```{r}
+nhanes_exercise %>% 
+  filter(age >= 20, !is.na(smoke_now)) %>% 
+  ggplot(aes(x = smoke_now)) +
+  geom_bar()
+```
 
 
